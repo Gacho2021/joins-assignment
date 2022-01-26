@@ -1,0 +1,40 @@
+select * from course, quarter;
+
+select quartername, coursename from quarter cross join course;
+
+select lastname, firstname, email, studentstartdate
+from person
+inner join student
+on person.personkey=student.personkey;
+
+select quarterkey, coursename, count(studentkey) total
+from course inner join coursesection on course.coursekey=coursesection.coursekey
+inner join roster on coursesection.sectionkey=roster.sectionkey
+group by quarterkey, coursename;
+
+select coursename, round(avg (finalgrade), 2) avarage
+from course inner join coursesection on course.coursekey=coursesection.coursekey
+inner join roster on coursesection.sectionkey=roster.sectionkey
+group by coursename;
+
+select coursename, round(avg (finalgrade), 2) avarage
+from course inner join coursesection on course.coursekey=coursesection.coursekey
+inner join roster on coursesection.sectionkey=roster.sectionkey
+group by coursename;
+
+select firstname, lastname from person inner join instructor on person.personkey=instructor.personkey
+left outer join coursesection on instructor.instructorkey=coursesection.instructorkey
+where coursesection.instructorkey is null;
+
+select firstname, lastname from person inner join instructor on person.personkey=instructor.personkey
+left outer join coursesection on instructor.instructorkey=coursesection.instructorkey
+where coursesection.instructorkey is null;
+
+Select distinct firstname, lastname from person full join instructor on person.personkey=instructor.personkey
+left outer join coursesection on instructor.instructorkey=coursesection.instructorkey
+where coursesection.instructorkey is null;
+
+Select coursekey, firstname, lastname, email
+from person
+natural join coursekey
+natural join course;
